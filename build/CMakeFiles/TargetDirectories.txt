@@ -1,0 +1,6 @@
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/intrinsics_gen.dir
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/omp_gen.dir
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/acc_gen.dir
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/LLVMMypass.dir
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/edit_cache.dir
+/home/noaa/Desktop/test_llvm_built_in/build/CMakeFiles/rebuild_cache.dir
