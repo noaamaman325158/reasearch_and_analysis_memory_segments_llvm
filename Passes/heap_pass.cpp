@@ -54,11 +54,10 @@ namespace {
             auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
             std::stringstream ss;
             ss << millis;  // Convert to string
-
             std::string runID = ss.str();
             errs() << "Run ID: " << runID << "\n";
 
-            /// Connect to Redis
+/// Connect to Redis
             redisContext *c = redisConnect("127.0.0.1", 6379);
             if (c == NULL || c->err) {
                 if (c) {
@@ -72,24 +71,24 @@ namespace {
 
 
 
-            // Send data to Redis
-            std::string functionName = F.getName().str();
+            // Get the current Unix timestamp
+            std::time_t timestamp = std::time(nullptr);
 
             // Create Redis keys with unique identifier
+            std::string functionName = F.getName().str();
             std::string allocatedKey = runID + ":" + functionName + ":allocated";
             std::string deallocatedKey = runID + ":" + functionName + ":deallocated";
 
             // Store allocated and deallocated memory data in Redis
             redisCommand(c, "SET %s %llu", allocatedKey.c_str(), allocatedBytes);
+            redisCommand(c, "ZADD memory_tracking %ld %s", static_cast<long>(timestamp), allocatedKey.c_str());
+
             redisCommand(c, "SET %s %llu", deallocatedKey.c_str(), deallocatedBytes);
-
-            // Store keys in a Redis list or set associated with the runID
-            redisCommand(c, "LPUSH %s %s", runID.c_str(), allocatedKey.c_str());
-            redisCommand(c, "LPUSH %s %s", runID.c_str(), deallocatedKey.c_str());
-
+            redisCommand(c, "ZADD memory_tracking %ld %s", static_cast<long>(timestamp), deallocatedKey.c_str());
 
             // Disconnect
             redisFree(c);
+
 
             return false; //Because We did not modify the function
         }
