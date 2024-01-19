@@ -1,5 +1,5 @@
 // Fetch chart data from your backend server
-fetch('/chart-data')
+fetch('/api/redis/data')
     .then(response => response.json())
     .then(data => {
         // Assuming 'data' is in the format required by Chart.js
