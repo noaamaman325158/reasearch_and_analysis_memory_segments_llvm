@@ -59,4 +59,3 @@ namespace {
 char HeapMemoryMeasurement::ID = 0;
 
 static RegisterPass<HeapMemoryMeasurement> X("heap-memory-measurement", "Heap Memory Measurement Pass");
-

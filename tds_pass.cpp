@@ -40,5 +40,5 @@ struct TSDAnalysisPass : public FunctionPass {
 
 char TSDAnalysisPass::ID = 0;
 
-static RegisterPass<TSDAnalysisPass> X("tsd-analysis", "TSD Analysis Pass");
+static RegisterPass<TSDAnalysisPass> X("tds-analysis", "TSD Analysis Pass");
 
