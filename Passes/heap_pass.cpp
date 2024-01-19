@@ -43,6 +43,7 @@ namespace {
                 }
             }
 
+            //Here is some output indication
             errs() << "Allocated bytes: " << allocatedBytes << "\n";
             errs() << "Deallocated bytes: " << deallocatedBytes << "\n";
 
@@ -90,7 +91,7 @@ namespace {
             // Disconnect
             redisFree(c);
 
-            return false; // We did not modify the function
+            return false; //Because We did not modify the function
         }
 
         void getAnalysisUsage(AnalysisUsage &AU) const override {
