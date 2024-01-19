@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Stop if any script fails
+set -e
+
 #Run heap pass
 ./useful_bash_scripts/build_heap.sh
 
