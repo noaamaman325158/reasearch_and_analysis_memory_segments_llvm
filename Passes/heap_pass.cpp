@@ -25,6 +25,7 @@ namespace {
 
             for (auto &BB : F) {
                 for (auto &I : BB) {
+
                     if (auto *allocInst = dyn_cast<AllocaInst>(&I)) {
                         Type *AllocType = allocInst->getAllocatedType();
                         allocatedBytes += DL.getTypeAllocSize(AllocType);
@@ -40,6 +41,7 @@ namespace {
                             }
                         }
                     }
+
                 }
             }
 
