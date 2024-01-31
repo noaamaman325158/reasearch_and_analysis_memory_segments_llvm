@@ -24,7 +24,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD: mongopassword
-      MONGO_INITDB_DATABASE: analysis_system_info
+      MONGO_INITDB_DATABASE: files_system_info
     ports:
       - "27017:27017"
     volumes:

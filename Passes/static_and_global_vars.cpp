@@ -15,10 +15,9 @@ namespace {
             errs() << "Analyzing Global and Static Variables\n";
 
             for (GlobalVariable &GV : M.globals()) {
-                if (GV.isConstant()) continue; // Skip constant globals
+                if (GV.isConstant()) continue; 
 
                 errs() << "Global Variable: " << GV.getName() << "\n";
-                // Additional analysis can be done here
             }
 
             // Analysis of static variables in functions
@@ -26,18 +25,17 @@ namespace {
                 for (BasicBlock &BB : F) {
                     for (Instruction &I : BB) {
                         if (AllocaInst *AI = dyn_cast<AllocaInst>(&I)) {
-                            // Check if the allocation is static (local to the function)
+                            
                             if (AI->isStaticAlloca()) {
                                 errs() << "Static Variable in Function " << F.getName() << ": ";
                                 errs() << *AI << "\n";
-                                // Further analysis can be implemented here
                             }
                         }
                     }
                 }
             }
 
-            return false; // Return false because we are not modifying the module
+            return false; 
         }
 
         void getAnalysisUsage(AnalysisUsage &AU) const override {

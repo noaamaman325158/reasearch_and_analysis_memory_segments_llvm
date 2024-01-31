@@ -13,4 +13,4 @@ set -e
 ./useful_bash_scripts/build_tds.sh
 
 #Run static and global variable pass
-./useful_bash_scripts/build_global_static_vars.sh
+#./useful_bash_scripts/build_global_static_vars.sh
