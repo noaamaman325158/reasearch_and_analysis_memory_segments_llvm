@@ -3,8 +3,8 @@
 # Define file names
 PASS_SOURCE="./Passes/identify_memory_leaks.cpp"
 PASS_SHARED_OBJECT="identify_memory_leaks_shared_object.so"
-TEST_PROGRAM_SOURCE="./tests/test_program.cpp"
-TEST_PROGRAM_IR="test_program.ll"
+TEST_PROGRAM_SOURCE="./tests/basic_program.cpp"
+TEST_PROGRAM_IR="basic_program.ll"
 HEAP_OUTPUT="identify_memory_leaks_out.ll"
 
 # Compile the LLVM pass into a shared object

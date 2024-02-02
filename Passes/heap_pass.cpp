@@ -34,6 +34,7 @@ namespace {
                         if (Callee && Callee->getName().startswith("free")) {
                             Value *AllocValue = freeInst->getOperand(0);
                             if (Instruction *AllocInst = dyn_cast<Instruction>(AllocValue)) {
+                                //alloca inherit from Instruction
                                 if (auto *allocaInst = dyn_cast<AllocaInst>(AllocInst)) {
                                     Type *AllocType = allocaInst->getAllocatedType();
                                     deallocatedBytes += DL.getTypeAllocSize(AllocType);
@@ -45,7 +46,6 @@ namespace {
                 }
             }
 
-            //Here is some output indication
             errs() << "Allocated bytes: " << allocatedBytes << "\n";
             errs() << "Deallocated bytes: " << deallocatedBytes << "\n";
 
@@ -59,7 +59,7 @@ namespace {
             std::string runID = ss.str();
             errs() << "Run ID: " << runID << "\n";
 
-/// Connect to Redis
+            /// Connect to Redis
             redisContext *c = redisConnect("127.0.0.1", 6379);
             if (c == NULL || c->err) {
                 if (c) {

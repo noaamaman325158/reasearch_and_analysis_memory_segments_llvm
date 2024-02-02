@@ -3,8 +3,8 @@
 # Define file names
 PASS_SOURCE="./Passes/heap_pass.cpp"
 PASS_SHARED_OBJECT="heap_pass_shared_object.so"
-TEST_PROGRAM_SOURCE="./tests/test_program.cpp"
-TEST_PROGRAM_IR="test_program.ll"
+TEST_PROGRAM_SOURCE="./tests/basic_program.cpp"
+TEST_PROGRAM_IR="basic_program.ll"
 HEAP_OUTPUT="heap_output.ll"
 
 # Compile the LLVM pass into a shared object

@@ -21,7 +21,7 @@ namespace {
             for (auto &BB : F) {
                 for (auto &I : BB) {
                     if (auto *allocInst = dyn_cast<AllocaInst>(&I)) {
-                        // Check if the allocation is for stack memory
+                        // Check if the allocation for stack memory
                         if (allocInst->isStaticAlloca()) {
                             numStackAllocations++;
                         }
@@ -42,7 +42,7 @@ namespace {
             auto duration = now.time_since_epoch();
             auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
             std::stringstream ss;
-            ss << millis;  // Convert to string
+            ss << millis;  
 
             std::string runID = ss.str();
             errs() << "Run ID: " << runID << "\n";
