@@ -6,18 +6,17 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IR/DataLayout.h"
 #include "llvm/Support/raw_ostream.h"
-#include "pqxx/pqxx"
+//#include "pqxx/pqxx"
 
 using namespace llvm;
-using namespace pqxx;
+//using namespace pqxx;
 
 namespace {
     struct MemoryTrackerPass : public FunctionPass {
         static char ID;
-        connection C;  // Database connection object
+        //connection C;  // Database connection object
 
-        MemoryTrackerPass() : FunctionPass(ID), C("dbname=analysis_system_info user=myuser password=mypassword") {}
-
+        MemoryTrackerPass() : FunctionPass(ID) /*, C("dbname=...") - Removed initialization */ {}
         virtual bool runOnFunction(Function &F) override {
             Module *M = F.getParent();
             LLVMContext &Context = M->getContext();
@@ -63,15 +62,15 @@ namespace {
                 }
 
                 // SQL query
-                std::string query = "INSERT INTO memory_operations (operation_type, pointer, size) VALUES ('" + operationType + "', '" + ptrAddress + "', " + std::to_string(size) + ");";
+                // std::string query = "INSERT INTO memory_operations (operation_type, pointer, size) VALUES ('" + operationType + "', '" + ptrAddress + "', " + std::to_string(size) + ");";
 
-                try {
-                    work W(C);
-                    W.exec(query);
-                    W.commit();
-                } catch (const std::exception &e) {
-                    errs() << "Database error: " << e.what() << "\n";
-                }
+                // try {
+                //     work W(C);
+                //     W.exec(query);
+                //     W.commit();
+                // } catch (const std::exception &e) {
+                //     errs() << "Database error: " << e.what() << "\n";
+                // }
             
                 errs() << "Memory Operation: Type = " << operationType << ", Ptr = " << ptrAddress << ", Size = " << size << "\n";
             }
