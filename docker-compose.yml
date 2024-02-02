@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_DB: analysis_system_info
       POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_PASSWORD: myuser
     ports:
       - "5432:5432"
     volumes:
