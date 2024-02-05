@@ -54,27 +54,27 @@ namespace {
 
             if (ptr) {
                 unsigned size = DL.getTypeAllocSize(ptr->getType()->getPointerElementType());
-
-                // Format the pointer address as a string
                 std::string ptrAddress = ptr->getName().str();
                 if (ptrAddress.empty()) {
                     ptrAddress = "anonymous";
                 }
 
-                // SQL query
-                // std::string query = "INSERT INTO memory_operations (operation_type, pointer, size) VALUES ('" + operationType + "', '" + ptrAddress + "', " + std::to_string(size) + ");";
+                // Extracting Debug Information
+                std::string fileName = "unknown";
+                unsigned lineNo = 0;
+                if (DILocation *Loc = inst->getDebugLoc()) { // Here we get the location
+                    lineNo = Loc->getLine();
+                    fileName = Loc->getFilename().str();
+                }
 
-                // try {
-                //     work W(C);
-                //     W.exec(query);
-                //     W.commit();
-                // } catch (const std::exception &e) {
-                //     errs() << "Database error: " << e.what() << "\n";
-                // }
-            
-                errs() << "Memory Operation: Type = " << operationType << ", Ptr = " << ptrAddress << ", Size = " << size << "\n";
+                // Print memory operation information along with file name and line number
+                errs() << "Memory Operation: Type = " << operationType 
+                    << ", Ptr = " << ptrAddress 
+                    << ", Size = " << size 
+                    << ", Location = " << fileName << ":" << lineNo << "\n";
             }
         }
+
     };
 }
 
